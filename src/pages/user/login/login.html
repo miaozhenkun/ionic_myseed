@@ -1,0 +1,27 @@
+<!-- 登录页面 -->
+<!--<ion-header>-->
+  <!--<ion-toolbar>-->
+    <!--<ion-title>登录</ion-title>-->
+  <!--</ion-toolbar>-->
+<!--</ion-header>-->
+<ion-content class="login">
+  <div class="header-photo">
+    <img src="assets/img/login/login_header_photo.png" />
+  </div>
+  <div class="login-80-wth">
+    <span class="margin-left">账户</span>
+    <span class="margin-left"><input type="text" [(ngModel)]="params.userName"/></span>
+    <span class="margin-left"><i class="fa fa-user-o"></i></span>
+  </div>
+  <br />
+  <div class="login-80-wth">
+    <span class="margin-left">密码</span>
+    <span class="margin-left"><input type="password" [(ngModel)]="params.passWord"/></span>
+    <span class="margin-left"><i class="fa fa-lock"></i></span>
+  </div>
+  <br />
+  <div class="login-btn" (click)="login()">登录</div>
+</ion-content>
+
+
+

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      demo
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item (click)="chartjs()">
+      请求网络---{{obj_CategorysListData}}
+    </button>
+    <button ion-item (click)="page()">
+      自定义分页组件
+    </button>
+    <button ion-item (click)="gomap()">
+      高德地图
+    </button>
+    <button ion-item (click)="goLogin()">
+      登录
+    </button>
+    <button ion-button round icon-only block (click)="Toast()">
+      弹出Toast
+    </button>
+  </ion-list>
+  <img src="assets/img/details/detail01.jpg" (tap)="getpic('assets/img/details/detail01.jpg')"  width="100%"/>
+    <button ion-button block icon-left color="light" (tap)="showAreasSelect()">地区选择</button>
+
+  <!--//<areas-select></areas-select>-->
+  <areas-select #areasSelect [level]="3" (cancel)="closeSelect()" (done)="done($event)"></areas-select>
+
+
+</ion-content>

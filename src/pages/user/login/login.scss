@@ -1,0 +1,36 @@
+page-login {
+  .login{
+    background: url(../assets/img/login/login_bg_img.png) no-repeat;
+    background-size: cover;
+  }
+  .login .header-photo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .login .header-photo img{
+    width: 100px;
+    height: 100px;
+  }
+  .login .login-80-wth{
+    background-image: url(../assets/img/login/login.png);
+    width: 80%;
+    margin: 0 auto;
+  }
+  .login .login-80-wth span input{
+    display: inline;
+    background-color: transparent;
+    width: 70%;
+  }
+  .login .login-btn{
+    background-image: url(../assets/img/login/login.png);
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+  }
+
+}

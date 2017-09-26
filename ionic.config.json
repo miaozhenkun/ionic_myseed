@@ -1,0 +1,14 @@
+{
+  "name": "ionic3Seed",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://192.168.1.252:9201/boms-manager/api"
+    }
+  ]
+}
