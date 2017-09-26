@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler,NavController } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from "@angular/http";
 
@@ -23,7 +23,7 @@ import {GlobalData} from '../providers/GlobalData';
 import {Logger} from "../providers/Logger";
 import {UTIL_DIALOG} from "../common/UTIL_DIALOG";
 
-
+import { WelcomePage } from '../pages/welcome/welcome';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -35,8 +35,10 @@ import {DemoModule} from "../pages/demo/demo.module";
 
 import {NativeService} from "../providers/NativeService";
 import {HttpMyNetService} from '../providers/HttpMyNetService';
+//import {HttpServices} from '../providers/HttpServices';
 import { LookService } from "../providers/look-service";
 import { UserService } from "../providers/UserService";
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { UserService } from "../providers/UserService";
     ContactPage,
     HomePage,
     DemoPage,
-    TabsPage
+    TabsPage,
+    WelcomePage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,8 @@ import { UserService } from "../providers/UserService";
     ContactPage,
     HomePage,
     DemoPage,
-    TabsPage
+    TabsPage,
+    WelcomePage
   ],
   providers: [
     StatusBar,
@@ -89,8 +93,11 @@ import { UserService } from "../providers/UserService";
     UTIL_DIALOG,
     GlobalData,
     HttpMyNetService,
+   // HttpServices,
     LookService,
     UserService
   ]
 })
-export class AppModule {}
+export class AppModule {
+
+}

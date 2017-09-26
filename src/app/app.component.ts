@@ -2,11 +2,14 @@ import {Component, ViewChild} from '@angular/core';
 import {Platform, Nav, ToastController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { TabsPage } from '../pages/tabs/tabs';
+import { Storage } from '@ionic/storage';
+import {WelcomePage} from "../pages/welcome/welcome";
+import {HomePage} from "../pages/home/home";
 declare var window;
 @Component({
-  templateUrl: 'app.html'
+   templateUrl: 'app.html'
+  //template: `<ion-nav [root]="rootPage"></ion-nav>`,
 })
 export class MyApp {
   rootPage:any = TabsPage;
@@ -15,9 +18,19 @@ export class MyApp {
   backButtonPressed: boolean = false;  //用于判断返回键是否触发
   @ViewChild(Nav) nav: Nav;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, toast: ToastController) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, toast: ToastController,public storage: Storage) {
     this.platform = platform;
     this.toast = toast;
+    this.storage.get('firstIn').then((result) => {
+      console.log(result);
+      if (result) {
+        this.rootPage = HomePage;
+        this.storage.set('firstIn', false);
+      } else {
+        this.storage.set('firstIn', false);
+        this.rootPage = WelcomePage;
+      }
+    });
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -71,5 +84,7 @@ export class MyApp {
       }, 2000)
     }
   }
+
+
 
 }

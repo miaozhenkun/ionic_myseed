@@ -12,14 +12,15 @@ import {GlobalData} from "./GlobalData";
 import {NativeService} from "./NativeService";
 import {APP_SERVE_URL, REQUEST_TIMEOUT} from "./Constants";
 import {Logger} from "./Logger";
-// import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import {LoginPage} from "../pages/user/login/login";
+import {HomePage} from "../pages/home/home";
 @Injectable()
 export class HttpMyNetService {
   constructor(public http: Http,
               private globalData: GlobalData,
               public logger: Logger,
-              private nativeService: NativeService) {
+              private nativeService: NativeService,public storage: Storage) {
 
   }
 
@@ -31,7 +32,14 @@ export class HttpMyNetService {
       console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
       this.http.request(url, options).timeout(REQUEST_TIMEOUT).subscribe(res => {
         this.nativeService.hideLoading();
-        console.log('%c 请求成功 %c', 'color:green', '', 'url', url, 'options', options, 'res', res);
+        console.log('%c 请求成功 %c');
+        console.log(res.json().success);
+        if(res.json().success==401){
+          console.log('未登录');
+        }else if(res.json().success == 403){//未登陆
+          console.log('无权访问');
+          //$state.go("login");
+        }
         observer.next(res);
       }, err => {
         this.requestFailed(url, options, err);//处理请求失败
@@ -151,8 +159,6 @@ export class HttpMyNetService {
         msg = '请求失败，未找到请求地址';
       } else if (status === 500) {
         msg = '请求失败，服务器出错，请稍后再试';
-      }else if(status === 401){
-        // this.navCtrl.push(LoginPage);
       }
       this.nativeService.alert(msg);
       this.logger.httpLog(err, msg, {
