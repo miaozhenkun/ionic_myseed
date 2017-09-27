@@ -24,10 +24,11 @@ import {Logger} from "../providers/Logger";
 import {UTIL_DIALOG} from "../common/UTIL_DIALOG";
 
 import { WelcomePage } from '../pages/welcome/welcome';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { DemoPage } from '../pages/demo/demo';
+//页面使用懒加载，删除无用 代码
+// import { AboutPage } from '../pages/about/about';
+// import { ContactPage } from '../pages/contact/contact';
+// import { HomePage } from '../pages/home/home';
+// import { DemoPage } from '../pages/demo/demo';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { IonicStorageModule } from '@ionic/storage';
@@ -43,10 +44,10 @@ import { UserService } from "../providers/UserService";
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    DemoPage,
+    // AboutPage,
+    // ContactPage,
+    // HomePage,
+    // DemoPage,
     TabsPage,
     WelcomePage
   ],
@@ -66,10 +67,10 @@ import { UserService } from "../providers/UserService";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    DemoPage,
+    // AboutPage,
+    // ContactPage,
+    // HomePage,
+    // DemoPage,
     TabsPage,
     WelcomePage
   ],

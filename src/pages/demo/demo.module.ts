@@ -13,11 +13,12 @@ import {PagingPage} from '../../common/paging/paging';
 import {Deblocking} from '../../common/deblocking/deblocking';
 
 import {MapLocationModule} from "../../common/map-component/map-location/map-location.module";
-import {PreviewPicturePageModule} from '../../common/preview-picture/preview-picture.module'
+import {PreviewPicturePageModule} from '../../common/preview-picture/preview-picture.module';
+import {DemoPage} from  '../demo/demo';
 
 @NgModule({
-  declarations: [ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,AreasSelect,PagingPage,Deblocking],
-  imports: [IonicPageModule,MapLocationModule,PreviewPicturePageModule],
+  declarations: [DemoPage,ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,AreasSelect,PagingPage,Deblocking],
+  imports: [IonicPageModule,MapLocationModule,PreviewPicturePageModule,IonicPageModule.forChild(DemoPage)],
   providers: [ IonicPageModule,],
   exports: [IonicPageModule,AreasSelect,PagingPage,Deblocking],
   entryComponents:[ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage]

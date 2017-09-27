@@ -2,7 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {Platform, Nav, ToastController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { TabsPage } from '../pages/tabs/tabs';
+ import { TabsPage } from '../pages/tabs/tabs';
 import { Storage } from '@ionic/storage';
 import {WelcomePage} from "../pages/welcome/welcome";
 import {HomePage} from "../pages/home/home";

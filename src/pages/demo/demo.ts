@@ -1,5 +1,5 @@
 import {Component, ElementRef, Injector, ViewChild} from '@angular/core';
-import {NavController,ModalController,ToastController} from 'ionic-angular';
+import {NavController,ModalController,ToastController,IonicPage} from 'ionic-angular';
 import {ChartjsDemoPage} from "./chartjs-demo/chartjs-demo";
 import {LookService} from "../../providers/look-service";
 import {PaginationDemoPage} from  "./pagination-demo/pagination-demo";
@@ -7,6 +7,7 @@ import {WorkMapPage} from  "./work-map/work-map";
 import {LoginPage} from  "../user/login/login";
 
 import {PreviewPicturePage} from "../../common/preview-picture/preview-picture";
+@IonicPage()
 @Component({
   selector: 'page-contact',
   templateUrl: 'demo.html',
