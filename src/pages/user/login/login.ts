@@ -24,6 +24,7 @@ export class LoginPage {
         this.globalData.token=data.data.token;
         this.globalData.userId=data.data.id;
         this.globalData.username=data.data.userName;
+        this.SPEDATA.initDB();
         this.navCtrl.pop();
       }else {
         this.UTIL_DIALOG.showMessage(data.msg);

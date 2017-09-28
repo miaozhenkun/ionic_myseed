@@ -17,6 +17,7 @@ import {LoginPage} from "../pages/user/login/login";
 import {HomePage} from "../pages/home/home";
 @Injectable()
 export class HttpMyNetService {
+  token:any;
   constructor(public http: Http,
               private globalData: GlobalData,
               public logger: Logger,
@@ -170,7 +171,7 @@ export class HttpMyNetService {
   }
 
   private optionsAddToken(options: RequestOptionsArgs): void {
-    let token = this.globalData.token;
+     let token = this.globalData.token;
     if (options.headers) {
       options.headers.append('access-token', '' + token);
     } else {

@@ -5,28 +5,34 @@
 */
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import {Injectable} from "@angular/core";
+import {Platform} from "ionic-angular";
 @Injectable()
 export class SPEDATA{
   database: SQLiteObject;
   SPEDATA_CONFIG = {
     USER_INFO: {isUserShare: true},// 登录用户信息
   }
-  constructor(private sqlite: SQLite,) {
+  constructor(private sqlite: SQLite,private platform:Platform) {
 
   }
   ngOnInit() {
     this.initDB();
   }
   initDB(){
-    this.sqlite.create({
-      name: 'data.db',
-      location: 'default'
-    }).then((db: SQLiteObject) => {
+    if (this.platform.is('cordova')) {
+      this.sqlite.create({
+        name: 'data.db',
+        location: 'default'
+      }).then((db: SQLiteObject) => {
         db.executeSql('CREATE TABLE IF NOT EXISTS spedata (key, value, user_id);', {})//建表
           .then(() => console.log('Executed SQL'))
           .catch(e => console.log(e));
         this.database = db;
       });
+    }else {
+
+    }
+
   }
   //插入数据
   insert(key, value,userId){
@@ -41,8 +47,8 @@ export class SPEDATA{
     var time: string = new Date().toTimeString().substring(0,5);
     var datetime: string = date + " " + time;
     console.log(datetime);
-    this.database.executeSql("UPDATE spedata set questionName=?,important=? WHERE id=?;",[params.questionName,
-      params.important
+    this.database.executeSql("UPDATE spedata set key=?,value=? WHERE id=?;",[params.key,
+      params.value
     ])
       .then(() => alert('修改成功'))
       .catch(e => console.log(e));

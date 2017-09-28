@@ -25,7 +25,7 @@ export class MyApp {
       console.log(result);
       if (result) {
         this.rootPage = HomePage;
-        this.storage.set('firstIn', false);
+        this.storage.set('firstIn', true);
       } else {
         this.storage.set('firstIn', false);
         this.rootPage = WelcomePage;
