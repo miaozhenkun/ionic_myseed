@@ -24,10 +24,10 @@ export class MyApp {
     this.storage.get('firstIn').then((result) => {
       console.log(result);
       if (result) {
-        this.rootPage = HomePage;
-        this.storage.set('firstIn', true);
+        this.rootPage = TabsPage;
+       // this.storage.set('firstIn', true);
       } else {
-        this.storage.set('firstIn', false);
+        this.storage.set('firstIn', true);
         this.rootPage = WelcomePage;
       }
     });

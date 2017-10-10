@@ -6,10 +6,13 @@ import { NavController,IonicPage } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 
-export class HomePage {
-
+export class HomePage  {
+  gener;
   constructor(public navCtrl: NavController) {
 
+  }
+  ngAfterContentInit(){
+    this.gener='01';
   }
 
 }
