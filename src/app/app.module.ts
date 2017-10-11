@@ -17,7 +17,8 @@ import {Network} from '@ionic-native/network';
 import {AppMinimize} from '@ionic-native/app-minimize';
 import { SQLite } from '@ionic-native/sqlite';
 import { SPEDATA } from '../common/SPEDATA';
-
+import { SQLitePorter } from '@ionic-native/sqlite-porter';
+import { DatabaseProvider } from '../providers/DatabaseProvider';
 
 import {GlobalData} from '../providers/GlobalData';
 import {Logger} from "../providers/Logger";
@@ -74,7 +75,9 @@ import { UserService } from "../providers/UserService";
     AppMinimize,
     SQLite,
     SPEDATA,
+    SQLitePorter,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatabaseProvider,
     NativeService,
     Logger,
     UTIL_DIALOG,

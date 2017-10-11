@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
-import { TestPipe } from './test/test';
+
 import { DicTransPipe } from './dic-trans/dic-trans';
-
+import {DefaultValuePipe} from "./defaultValue/defaultValue";
 @NgModule({
-  declarations: [TestPipe,
-    DicTransPipe
-
+  declarations: [DefaultValuePipe, DicTransPipe
   ],
   imports: [
-
   ],
-  exports: [TestPipe,
-    DicTransPipe
-
+  exports: [DefaultValuePipe, DicTransPipe
   ]
 })
 export class PipesModule { }

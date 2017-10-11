@@ -5,7 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
  import { TabsPage } from '../pages/tabs/tabs';
 import { Storage } from '@ionic/storage';
 import {WelcomePage} from "../pages/welcome/welcome";
-import {HomePage} from "../pages/home/home";
+import {GlobalData} from "../providers/GlobalData";
+
 declare var window;
 @Component({
    templateUrl: 'app.html'
@@ -17,12 +18,11 @@ export class MyApp {
   toast: any = ToastController;
   backButtonPressed: boolean = false;  //用于判断返回键是否触发
   @ViewChild(Nav) nav: Nav;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, toast: ToastController,public storage: Storage) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, toast: ToastController,public storage: Storage,private globalData:GlobalData) {
+    let that=this;
     this.platform = platform;
     this.toast = toast;
     this.storage.get('firstIn').then((result) => {
-      console.log(result);
       if (result) {
         this.rootPage = TabsPage;
        // this.storage.set('firstIn', true);
@@ -31,6 +31,9 @@ export class MyApp {
         this.rootPage = WelcomePage;
       }
     });
+    this.storage.get('token').then(function (token) {
+      that.globalData.token=token;
+    })
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
