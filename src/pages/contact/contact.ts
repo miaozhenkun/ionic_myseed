@@ -7,6 +7,7 @@ import { NavController,IonicPage } from 'ionic-angular';
 })
 export class ContactPage {
   config={};
+  cconfig={};
   constructor(public navCtrl: NavController) {
 
   }
@@ -21,11 +22,9 @@ export class ContactPage {
         }
       },
       grid: {
-        left: '3%',
-        right: '4%',
+        left: '2%',
+        right: '3%',
         bottom: '3%',
-        width: '100%',
-        height: '100%',
         containLabel: true
       },
       xAxis : [
@@ -47,10 +46,78 @@ export class ContactPage {
           name:'直接访问',
           type:'bar',
           // barWidth: '60%',
-          data:[10, 52, 200, 334, 390, 330, 220]
+          data:[10, 52, 200, 334, 390, 330, 212]
         }
       ]
     };
+
+    let labelOption = {
+      normal: {
+        show: true,
+        position: 'top',
+        fontSize: 12,
+        rich: {
+          name: {
+            textBorderColor: '#fff'
+          }
+        }
+      }
+    };
+    this.cconfig= {
+      // title: {
+      //   text: '主要物资采购分析'
+      // },
+      grid: {
+         left: '10%',
+        right: '3%'
+      },
+      color: ['#003366', '#006699', '#4cabce'],
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      legend: {
+        data: ['当月', '半年', '一年'],
+        left: 'center',
+        top: 'top'
+      },
+      calculable: true,
+      xAxis: [
+        {
+          type: 'category',
+          axisTick: {show: false},
+          data: ['变压器', '电缆', '高压电']
+        }
+      ],
+      yAxis: [
+        {
+          type: 'value'
+        }
+      ],
+      series: [
+        {
+          name: '当月',
+          type: 'bar',
+          barGap: '10%',
+          label: labelOption,
+          data: [320, 332, 301]
+        },
+        {
+          name: '半年',
+          type: 'bar',
+          label: labelOption,
+          data: [220, 182, 191]
+        },
+        {
+          name: '一年',
+          type: 'bar',
+          label: labelOption,
+          data: [150, 232, 201]
+        }
+      ]
+    }
     console.log(this.config);
   }
 
