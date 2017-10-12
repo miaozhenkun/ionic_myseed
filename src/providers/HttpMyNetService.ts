@@ -30,15 +30,16 @@ export class HttpMyNetService {
     this.optionsAddToken(options);
     return Observable.create(observer => {
       this.nativeService.showLoading();
-      console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
+    //  console.log('%c 请求前 %c', 'color:blue', '', 'url', url, 'options', options);
       this.http.request(url, options).timeout(REQUEST_TIMEOUT).subscribe(res => {
         this.nativeService.hideLoading();
-        console.log('%c 请求成功 %c');
+      //  console.log('%c 请求成功 %c');
         console.log(res.json().success);
         if(res.json().success==401){
           console.log('未登录');
         }else if(res.json().success == 403){//未登陆
           console.log('无权访问');
+
           //$state.go("login");
         }
         observer.next(res);
