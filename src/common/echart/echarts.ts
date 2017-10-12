@@ -3,7 +3,7 @@ declare var echarts;
 /**
  * @name echart 组件
  * @description  miaokun
- * @example   <echarts [config]="" ></echarts>
+ * @example   <echarts [config]="" [cheight]=""></echarts>
  */
 @Component({
   selector: 'echarts',
@@ -12,6 +12,7 @@ declare var echarts;
 export class Echart   {
   @ViewChild('containerchart') container: ElementRef;
   @Input() config:any;//此为 echart 组件的配置项
+  @Input() cheight:any;//设置  图表的高度
   @Output() pwdResult = new EventEmitter<any>();
   defaltOption;
   chart: any;
@@ -37,19 +38,17 @@ export class Echart   {
 
   }
   ngOnChanges(changes) {
-    if(changes.config){
       this.refresh();
-    }
   }
   ngAfterContentInit() {
       this.refresh();
   }
   refresh(){
-    console.log(this.config);
     let ctx = this.container.nativeElement;
+    if(this.cheight){
+      ctx.style.height=this.cheight+'px';
+    }
     this.chart = echarts.init(ctx);
-    // let allConfig = {};
-    // angular.extend(allConfig, this.defaltOption, {baseOption: this.config});
     this.chart.setOption(this.config);
   }
 }

@@ -12,7 +12,6 @@ export class ContactPage {
 
   }
   ionViewDidEnter(){
-    console.log('执行了');
     this.config={
       color: ['#3398DB'],
       tooltip : {
@@ -118,7 +117,6 @@ export class ContactPage {
         }
       ]
     }
-    console.log(this.config);
   }
 
 }
