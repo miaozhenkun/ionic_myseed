@@ -5,20 +5,23 @@ import {LookService} from "../../providers/look-service";
 import {PaginationDemoPage} from  "./pagination-demo/pagination-demo";
 import {WorkMapPage} from  "./work-map/work-map";
 import {LoginPage} from  "../user/login/login";
-
 import {PreviewPicturePage} from "../../common/preview-picture/preview-picture";
+
+import {UserService} from "../../providers/UserService";
+import {NativeService} from "../../providers/NativeService";
 @IonicPage()
 @Component({
-  selector: 'page-contact',
+  selector: 'page-demo',
   templateUrl: 'demo.html',
 })
-
 export class DemoPage {
   obj_CategorysListData;
   errorMessage: string;
+  IMG_PATH;
   toast: any = ToastController;
-  constructor(private navCtrl: NavController,private LookService:LookService,protected rt: ElementRef, protected ij: Injector,private modalCtrl: ModalController,toast: ToastController) {
-    //super(rt, ij);
+  constructor(private navCtrl: NavController,private LookService:LookService,private modalCtrl: ModalController,toast: ToastController
+  ,private UserService:UserService,private NativeService:NativeService
+  ) {
     this.toast=toast;
   }
   chartjs() {
@@ -37,9 +40,14 @@ export class DemoPage {
   ionViewDidLoad() {
     this.LookService.getData().subscribe(
       data=>{
-          console.log(data.data);
-          console.log(data.data.message);
           this.obj_CategorysListData=data.data.message;
+      }
+    );
+  }
+  ngOnInit(){
+    this.UserService.getAvatar().subscribe(
+      data=>{
+        this.IMG_PATH=data.data;
       }
     )
   }
@@ -51,15 +59,12 @@ export class DemoPage {
     console.log(data);
   }
   closeSelect() {
-    //this.showAlert('you click close');
+
   }
   getpic(index){
     console.log(index);
     let picturePaths = [];
     picturePaths.push(index);
-    // for (let fileObj of this.fileObjList) {
-    //   picturePaths.push(fileObj.origPath);
-    // }
     this.modalCtrl.create(PreviewPicturePage, {'initialSlide': 0, 'picturePaths':picturePaths}).present();
   }
   Toast(){
@@ -70,6 +75,15 @@ export class DemoPage {
     });
     toast.present();
   }
-
+  private selectHead(){
+      this.NativeService.getPicture().subscribe(data=>{
+        this.UserService.updateAvatar(data).subscribe(result=>{
+          this.UserService.getAvatar().subscribe(
+            data=>{
+              this.IMG_PATH=data.data;
+            });
+        });
+      });
+  }
 
 }

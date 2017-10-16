@@ -1,3 +1,22 @@
-page-contact {
-
+page-demo {
+  .userinfo{
+    height: 100px;
+  }
+  .text-info {
+    margin-left: 120px;
+    padding-top: 20px;
+  }
+  .text-info .name{
+      font-weight: bold;
+      color: #5489B1;
+      margin-bottom: 5px;
+  }
+  .icon-bg img{
+    top: 10px;
+    position: absolute;
+    left: 25px;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+  }
 }

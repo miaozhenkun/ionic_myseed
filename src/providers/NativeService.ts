@@ -1,6 +1,8 @@
-/**
- * Created by yanxiaojun617@163.com on 12-27.
- */
+/** 注释
+*2017/10/13
+*作者:miao
+*功能: app 常用功能  调用服务
+*/
 import {Injectable} from '@angular/core';
 import {ToastController, LoadingController, Platform, Loading, AlertController} from 'ionic-angular';
 
@@ -237,16 +239,22 @@ export class NativeService {
    * @param duration 显示时长
    */
   showToast(message: string = '操作完成', duration: number = 2000): void {
-    if (this.isMobile()) {
-      this.toast.show(message, String(duration), 'center').subscribe();
-    } else {
-      this.toastCtrl.create({
-        message: message,
-        duration: duration,
-        position: 'middle',
-        showCloseButton: false
-      }).present();
-    }
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: duration,
+      position: 'bottom'
+    });
+    toast.present();
+    // if (this.isMobile()) {
+    //   this.toast.show(message, String(duration), 'bottom').subscribe();
+    // } else {
+    //   this.toastCtrl.create({
+    //     message: message,
+    //     duration: duration,
+    //     position: 'bottom',
+    //     showCloseButton: false
+    //   }).present();
+    // }
   };
 
   /**

@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter, ElementRef, ViewChild} from '@an
 declare var echarts;
 /**
  * @name echart 组件
- * @description  miaokun
+ * @description  miao
  * @example   <echarts [config]="" [cheight]=""></echarts>
  */
 @Component({

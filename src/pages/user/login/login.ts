@@ -5,6 +5,7 @@ import {GlobalData} from  '../../../providers/GlobalData';
 import {UTIL_DIALOG} from "../../../common/UTIL_DIALOG";
 import {SPEDATA} from "../../../common/SPEDATA";
 import { Storage } from '@ionic/storage';
+import {TabsPage} from "../../tabs/tabs";
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -26,12 +27,8 @@ export class LoginPage {
         this.globalData.username=data.data.userName;
         // this.SPEDATA.initDB();
         // this.SPEDATA.insert(data.data.id,data.data.token,data.data.userName);
-        this.navCtrl.pop();
-      }else {
-        this.UTIL_DIALOG.showMessage(data.msg);
+        this.navCtrl.push(TabsPage);
       }
-
     })
-    console.log("点击登录");
   }
 }

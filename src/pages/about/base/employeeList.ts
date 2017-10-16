@@ -24,15 +24,12 @@ export class employeeListPage {
   private loadData(isReload,refresher:any,infiniteScroll:any) {
     this.searchParams.page=this.page;
     this.searchParams.total=this.itemsTotal;
-    console.log('456');
     if (!this.isRun) {
-      console.log('789');
       this.isRun = true;
       if (isReload) {
         this.itemsTotal = null;
       }
       this.userService.getStaffList(this.searchParams).subscribe(data=>{
-        console.log(data);
         if(data.data){
           var rows = data.data.rows;
           this.itemsTotal=data.total;
@@ -46,7 +43,6 @@ export class employeeListPage {
             this.items = this.items.concat(rows);
           }
         }
-        console.log('123');
           if(refresher){
             refresher.complete();
           }

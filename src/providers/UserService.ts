@@ -20,6 +20,15 @@ export class UserService {
   public getStaffList(params) {
     return this.httpMyNetService.get('/base/staff/list', params).map(res => res.json());
   }
+  //获取用户头像
+  public getAvatar(){
+    return this.httpMyNetService.get('/system/user/getAvatar').map(res => res.json());
+  }
+  // 更新用户头像
+  public updateAvatar(params){
+    return this.httpMyNetService.post('/system/user/updateAvatar',params).map(res=>res.json());
+  }
+
 
 }
 
