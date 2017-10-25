@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController,IonicPage } from 'ionic-angular';
+import {Observable} from "rxjs/Observable";
 @IonicPage()
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
 export class ContactPage {
-  config={};
+  private timer;
+  config:any;
   cconfig={};
+  private ctime;
   constructor(public navCtrl: NavController) {
 
   }
@@ -117,6 +120,12 @@ export class ContactPage {
         }
       ]
     }
+    this.timer = setInterval(() => {
+      this.ctime=new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds();
+      // this.config.series[0].data[0]=new Date().getSeconds()*10;
+    }, 1000);
   }
+
+
 
 }
