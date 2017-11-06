@@ -7,19 +7,16 @@
 </ion-header>
 
 <ion-content>
-
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframewor
-    </ion-item>
-    当前时间为----{{ctime}}
+    <button tappable ion-item (click)="getGps()">
+      获取当前位置
+    </button>
+    <button tappable ion-item (click)="getDevice()">
+      获取当前设备信息
+    </button>
+    <p class="w100 padding-left">当前位置------{{UserPostion}}</p>
+    <p class="w100 padding-left">设备信息------{{device}}</p>
+
   </ion-list>
-  <button tappable ion-item (click)="Toast()">
-    测试点击
-  </button>
-  <!-- <echarts [config]="config" [cheight]="220"></echarts>
-  <echarts [config]="cconfig" ></echarts> -->
-  <!--<echarts [config]="config1" ></echarts>-->
+
 </ion-content>

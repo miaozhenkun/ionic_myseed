@@ -31,6 +31,7 @@ import {Http, Response} from "@angular/http";
 import {Utils} from "./Utils";
 import {Logger} from "./Logger";
 declare var LocationPlugin;
+declare var baidumap_location;
 // declare var AMapNavigation;
 
 @Injectable()
@@ -453,7 +454,7 @@ export class NativeService {
   getUserLocation(): Observable<Position> {
     return Observable.create(observer => {
       if (this.isMobile()) {
-        LocationPlugin.getLocation(data => {
+        baidumap_location.getCurrentPosition(data => {
           observer.next({'lng': data.longitude, 'lat': data.latitude});
         }, msg => {
           observer.error('获取位置失败');
@@ -465,12 +466,35 @@ export class NativeService {
           this.logger.log(msg, '获取位置失败');
         });
       } else {
-        console.log('非手机环境,即测试环境返回固定坐标');
-        observer.next({'lng': 113.350912, 'lat': 23.119495});
+        this.showToast('非手机环境,即测试环境返回固定坐标');
+        observer.next({'lng': 113.706808, 'lat': 36.783879});
       }
     });
   }
+  //使用百度地图定位
+  getUserGps(): Observable<Position> {
+    return Observable.create(observer => {
+      if (this.isMobile()) {
+        baidumap_location.getCurrentPosition(function (result) {
+          console.log(JSON.stringify(result, null, 4));
+          observer.next(result);
+        }, function (error) {
+
+        });
+      }else {
+        this.showToast('非手机环境,即测试环境返回固定坐标');
+        observer.next({'lng': 113.706808, 'lat': 36.783879});
+      }
+    });
+
+  }
+
+
 }
+
+
+
+
 
 //   /**
 //    * 地图导航

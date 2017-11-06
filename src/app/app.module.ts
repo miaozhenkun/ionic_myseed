@@ -18,6 +18,7 @@ import {AppMinimize} from '@ionic-native/app-minimize';
 import { SQLite } from '@ionic-native/sqlite';
 import { SPEDATA } from '../common/SPEDATA';
 import { SQLitePorter } from '@ionic-native/sqlite-porter';
+import { Device } from '@ionic-native/device';
 import { DatabaseProvider } from '../providers/DatabaseProvider';
 
 import {GlobalData} from '../providers/GlobalData';
@@ -77,6 +78,7 @@ import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLea
     SQLite,
     SPEDATA,
     SQLitePorter,
+    Device,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,
     NativeService,

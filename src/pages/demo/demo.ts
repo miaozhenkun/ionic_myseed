@@ -39,6 +39,15 @@ export class DemoPage {
   goLogin(){
     this.navCtrl.push(LoginPage);
   }
+  calendar(){
+    this.NativeService.showToast('点击定位功能');
+    this.NativeService.getUserGps().subscribe(
+      data=>{
+        this.NativeService.showToast(JSON.stringify(data, null, 4));
+
+        console.log(data);
+      });
+  }
 
   ionViewDidLoad() {
     this.LookService.getData().subscribe(
