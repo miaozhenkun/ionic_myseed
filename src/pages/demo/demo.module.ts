@@ -15,13 +15,21 @@ import {Deblocking} from '../../common/deblocking/deblocking';
 import {MapLocationModule} from "../../common/map-component/map-location/map-location.module";
 import {PreviewPicturePageModule} from '../../common/preview-picture/preview-picture.module';
 import {DemoPage} from  '../demo/demo';
+import {RegisterPage} from "../user/login/register/register";
+import {FindPasswordPage} from "../user/login/find-password/find-password";
+import {SelectPicturePageModule} from "../../common/select-picture/select-picture.module";
+import {TransitionDemoPageModule} from "./transition-demo/transition-demo.module";
+import {ModalFromRightPageModule} from "./transition-demo/modal-from-right/modal-from-right.module";
+import {ModalScalePageModule} from "./transition-demo/modal-scale/modal-scale.module";
+
 
 @NgModule({
-  declarations: [DemoPage,ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,AreasSelect,PagingPage,Deblocking],
-  imports: [IonicPageModule,MapLocationModule,PreviewPicturePageModule,IonicPageModule.forChild(DemoPage)],
+  declarations: [DemoPage,ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,AreasSelect,PagingPage,Deblocking,RegisterPage,FindPasswordPage],
+  imports: [IonicPageModule,MapLocationModule,PreviewPicturePageModule, SelectPicturePageModule,
+    TransitionDemoPageModule,ModalScalePageModule, ModalFromRightPageModule ,  IonicPageModule.forChild(DemoPage)],
   providers: [ IonicPageModule,],
   exports: [IonicPageModule,AreasSelect,PagingPage,Deblocking],
-  entryComponents:[ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage]
+  entryComponents:[ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,RegisterPage,FindPasswordPage]
 })
 export class DemoModule {
 }

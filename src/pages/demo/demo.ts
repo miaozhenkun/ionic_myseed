@@ -9,6 +9,9 @@ import {PreviewPicturePage} from "../../common/preview-picture/preview-picture";
 
 import {UserService} from "../../providers/UserService";
 import {NativeService} from "../../providers/NativeService";
+
+import {TransitionDemoPage} from "./transition-demo/transition-demo";
+
 @IonicPage()
 @Component({
   selector: 'page-demo',
@@ -45,11 +48,11 @@ export class DemoPage {
     );
   }
   ngOnInit(){
-    this.UserService.getAvatar().subscribe(
-      data=>{
-        this.IMG_PATH=data.data;
-      }
-    )
+    // this.UserService.getAvatar().subscribe(
+    //   data=>{
+    //     this.IMG_PATH=data.data;
+    //   }
+    // )
   }
   @ViewChild('areasSelect') areasSelect;
   showAreasSelect() {
@@ -68,22 +71,24 @@ export class DemoPage {
     this.modalCtrl.create(PreviewPicturePage, {'initialSlide': 0, 'picturePaths':picturePaths}).present();
   }
   Toast(){
-    let toast = this.toast.create({
-      message: '点击了！！！',
-      duration: 2000,
-      position: 'bottom'
-    });
-    toast.present();
+    this.NativeService.showToast('点击了！！！');
   }
   private selectHead(){
-      this.NativeService.getPicture().subscribe(data=>{
-        this.UserService.updateAvatar(data).subscribe(result=>{
-          this.UserService.getAvatar().subscribe(
-            data=>{
-              this.IMG_PATH=data.data;
-            });
-        });
-      });
+      // this.NativeService.getPicture().subscribe(data=>{
+      //   this.UserService.updateAvatar(data).subscribe(result=>{
+      //     this.UserService.getAvatar().subscribe(
+      //       data=>{
+      //         this.IMG_PATH=data.data;
+      //       });
+      //   });
+      // });
   }
+
+
+  pageTransition() {
+    this.navCtrl.push(TransitionDemoPage);
+  }
+
+
 
 }

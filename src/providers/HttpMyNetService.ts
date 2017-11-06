@@ -42,12 +42,12 @@ export class HttpMyNetService {
         console.log(res.json().success);
         if(res.json().success==401){//未登陆
           this.nativeService.showToast('未登录');
-          this.nav.push(LoginPage);
+          // this.nav.push(LoginPage);
         }else if(res.json().success ==403){
           this.nativeService.showToast('无权访问');
-          this.nav.push(LoginPage);
+           this.nav.push(LoginPage);
         }else if(res.json().success==1){
-          // this.nativeService.showToast('访问成功');
+           this.nativeService.showToast('访问成功');
         }else if(res.json().success==0){
           this.nativeService.showToast(res.json().msg+'');
         }

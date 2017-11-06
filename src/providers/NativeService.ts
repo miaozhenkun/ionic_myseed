@@ -239,22 +239,22 @@ export class NativeService {
    * @param duration 显示时长
    */
   showToast(message: string = '操作完成', duration: number = 2000): void {
-    let toast = this.toastCtrl.create({
-      message: message,
-      duration: duration,
-      position: 'bottom'
-    });
-    toast.present();
-    // if (this.isMobile()) {
-    //   this.toast.show(message, String(duration), 'bottom').subscribe();
-    // } else {
-    //   this.toastCtrl.create({
-    //     message: message,
-    //     duration: duration,
-    //     position: 'bottom',
-    //     showCloseButton: false
-    //   }).present();
-    // }
+    // let toast = this.toastCtrl.create({
+    //   message: message,
+    //   duration: duration,
+    //   position: 'bottom'
+    // });
+    // toast.present();
+    if (this.isMobile()) {
+      this.toast.show(message, String(duration), 'bottom').subscribe();
+    } else {
+      this.toastCtrl.create({
+        message: message,
+        duration: duration,
+        position: 'bottom',
+        showCloseButton: false
+      }).present();
+    }
   };
 
   /**

@@ -31,6 +31,18 @@
     <button ion-item (click)="goLogin()">
       登录
     </button>
+    <button tappable ion-item (click)="Toast()">
+      测试点击
+    </button>
+    <button ion-item (click)="selectPic()">
+      自定义添加/预览图片组件
+    </button>
+    <button ion-item (click)="pageTransition()">
+      自定义过渡动画
+    </button>
+    <button ion-item (click)="calendar()">
+      日历/日期范围选择
+    </button>
   </ion-list>
   <img src="assets/img/details/detail01.jpg" (tap)="getpic('assets/img/details/detail01.jpg')"  width="100%"/>
     <button ion-button block icon-left color="light" (tap)="showAreasSelect()">地区选择</button>

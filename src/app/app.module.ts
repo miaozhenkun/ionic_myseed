@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler, Config} from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from "@angular/http";
 
@@ -34,6 +34,7 @@ import {NativeService} from "../providers/NativeService";
 import {HttpMyNetService} from '../providers/HttpMyNetService';
 import { LookService } from "../providers/look-service";
 import { UserService } from "../providers/UserService";
+import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 
 
 @NgModule({
@@ -89,4 +90,14 @@ import { UserService } from "../providers/UserService";
 })
 export class AppModule {
 
+  constructor(public config: Config) {
+    this.setCustomTransitions();
+  }
+
+  private setCustomTransitions() {
+    this.config.setTransition('modal-from-right-enter', ModalFromRightEnter);
+    this.config.setTransition('modal-from-right-leave', ModalFromRightLeave);
+    this.config.setTransition('modal-scale-enter', ModalScaleEnter);
+    this.config.setTransition('modal-scale-leave', ModalScaleLeave);
+  }
 }

@@ -16,7 +16,10 @@
     </ion-item>
     当前时间为----{{ctime}}
   </ion-list>
-  <echarts [config]="config" [cheight]="220"></echarts>
-  <echarts [config]="cconfig" ></echarts>
+  <button tappable ion-item (click)="Toast()">
+    测试点击
+  </button>
+  <!-- <echarts [config]="config" [cheight]="220"></echarts>
+  <echarts [config]="cconfig" ></echarts> -->
   <!--<echarts [config]="config1" ></echarts>-->
 </ion-content>
