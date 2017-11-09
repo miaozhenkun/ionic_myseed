@@ -15,7 +15,10 @@ export class ContactPage {
 
   }
   ionViewDidEnter(){
-
+      let value=13;
+      console.log(value);
+      value=++value;
+    console.log(value);
     // this.timer = setInterval(() => {
     //   this.ctime=new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds();
     //   // this.config.series[0].data[0]=new Date().getSeconds()*10;
