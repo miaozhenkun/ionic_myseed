@@ -15,10 +15,7 @@ export class ContactPage {
 
   }
   ionViewDidEnter(){
-      let value=13;
-      console.log(value);
-      value=++value;
-    console.log(value);
+
     // this.timer = setInterval(() => {
     //   this.ctime=new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds();
     //   // this.config.series[0].data[0]=new Date().getSeconds()*10;
@@ -37,7 +34,7 @@ export class ContactPage {
   }
   scan() {
     let options: ZBarOptions = {
-      flash: '',
+      flash: 'auto',
       text_title: '扫码',
       text_instructions: '请对准要扫描的条形码或二维码',
       drawSight: true
