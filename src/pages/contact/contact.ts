@@ -28,10 +28,10 @@ export class ContactPage {
       });
   }
   getDevice(){
-
      this.NativeService.showToast(this.Device.model+'----'+this.Device.uuid+'----'+this.Device.serial);
-      this.device= JSON.stringify(this.Device);
+     this.device= JSON.stringify(this.Device);
   }
+
 
 
 }
