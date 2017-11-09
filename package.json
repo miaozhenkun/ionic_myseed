@@ -36,9 +36,11 @@
     "@ionic-native/status-bar": "3.12.1",
     "@ionic-native/toast": "^3.10.2",
     "@ionic-native/transfer": "^3.10.2",
+    "@ionic-native/zbar": "^4.3.3",
     "@ionic/storage": "2.0.1",
     "cordova-android": "6.3.0",
     "cordova-plugin-baidumaplocation": "^3.2.0",
+    "cordova-plugin-cszbar": "^1.3.4",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-splashscreen": "~4.0.1",
     "cordova-plugin-statusbar": "2.2.2",
@@ -72,7 +74,8 @@
         "ANDROID_KEY": "bIENsoXLfGtkGENMn1mCfqycQZhNDBbZ",
         "IOS_KEY": "bIENsoXLfGtkGENMn1mCfqycQZhNDBbZ",
         "IOS_LOCATION_DESC": "请点击'好'以允许访问。"
-      }
+      },
+      "cordova-plugin-cszbar": {}
     },
     "platforms": [
       "android"
