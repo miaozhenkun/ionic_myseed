@@ -3,6 +3,7 @@ import { NavController,IonicPage } from 'ionic-angular';
  import { Device } from '@ionic-native/device';
 import {NativeService} from "../../providers/NativeService";
 import { ZBar, ZBarOptions } from '@ionic-native/zbar';
+import {TestDemoPage} from "./test-demo/test-demo";
 @IonicPage()
 @Component({
   selector: 'page-contact',
@@ -25,12 +26,15 @@ export class ContactPage {
     this.NativeService.getUserGps().subscribe(
       data=>{
         this.UserPostion= JSON.stringify(data, null, 4);
+        console.log(this.UserPostion);
+        this.navCtrl.push(TestDemoPage,data);
         // this.NativeService.showToast(JSON.stringify(data, null, 4));
       });
   }
   getDevice(){
-     this.NativeService.showToast(this.Device.model+'----'+this.Device.uuid+'----'+this.Device.serial);
-     this.device= JSON.stringify(this.Device);
+    this.navCtrl.push(TestDemoPage,this.Device);
+     // this.NativeService.showToast(this.Device.model+'----'+this.Device.uuid+'----'+this.Device.serial);
+     // this.device= JSON.stringify(this.Device);
   }
   scan() {
     let options: ZBarOptions = {

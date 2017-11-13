@@ -37,6 +37,7 @@ import {HttpMyNetService} from '../providers/HttpMyNetService';
 import { LookService } from "../providers/look-service";
 import { UserService } from "../providers/UserService";
 import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
+import {contactPageModule} from "../pages/contact/contact.module";
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLea
     }),
     IonicStorageModule.forRoot(),//就这里
     DemoModule,
+    contactPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
