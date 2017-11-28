@@ -16,7 +16,7 @@ export class OptionsPage {
   developer = {};
   developers = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              // private databaseprovider:DatabaseProvider
+               // private databaseprovider:DatabaseProvider
   ) {
 
     // this.databaseprovider.getDatabaseState().subscribe(rdy => {
@@ -25,8 +25,9 @@ export class OptionsPage {
     //   }
     // })
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OptionsPage');
+
+  ionViewDidEnter() {
+
   }
   loadDeveloperData() {
     // this.databaseprovider.getAllDevelopers().then(data => {
