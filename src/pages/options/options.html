@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label stacked>What's your name?</ion-label>
+    <ion-label stacked>要发送的消息内容</ion-label>
     <ion-input [(ngModel)]="developer.name" placeholder="Developer Name"></ion-input>
   </ion-item>
   <ion-item>
@@ -26,7 +26,7 @@
     <ion-label stacked>How long have you been working?</ion-label>
     <ion-input [(ngModel)]="developer.yearsOfExperience" placeholder="Years of experience"></ion-input>
   </ion-item>
-  <button ion-button full (click)="addDeveloper()">Add Developer Info</button>
+  <button ion-button full (click)="addDeveloper()">{{meassage}}</button>
   <ion-list>
     <ion-item *ngFor="let dev of developers">
       <h2>{{ dev.name }}</h2>

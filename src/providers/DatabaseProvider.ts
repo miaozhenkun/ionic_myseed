@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
  import { BehaviorSubject } from 'rxjs/Rx';
  import { Storage } from '@ionic/storage';
  import {SQLitePorter} from "@ionic-native/sqlite-porter";
+ import {dbname, sqls} from "./Sqlinit";
+
 declare var window;
 @Injectable()
 export class DatabaseProvider {
@@ -15,25 +17,66 @@ export class DatabaseProvider {
   constructor(public sqlitePorter: SQLitePorter, private storage: Storage, private sqlite: SQLite, private platform: Platform, private http: Http) {
     this.databaseReady = new BehaviorSubject(false);
     console.log(window.device);
-    this.platform.ready().then(() => {
-      this.sqlite.create({
-        name: 'developers.db',
-        location: 'default'
-      })
-        .then((db: SQLiteObject) => {
-          this.database = db;
-          this.storage.get('database_filled').then(val => {
-            if (val) {
-              this.databaseReady.next(true);
-            } else {
-              this.fillDatabase();
-            }
+    if (window.sqlitePlugin !== undefined) {
+      this.platform.ready().then(() => {
+        this.sqlite.create({
+          name: dbname,
+          location: 'default'
+        })
+          .then((db: SQLiteObject) => {
+            this.database = db;
+            this.storage.get(dbname).then(val => {
+              if (val) {
+                this.databaseReady.next(true);
+              } else {
+                this.fillDatabase();
+                //this.initTables();
+              }
+            });
           });
-        });
-    });
+      });
+    }else {
+      this.database= window.openDatabase(dbname, "1.0", "Database", 200000);
+      this.fillDatabase();
+     // this.initTables();
+    }
+
+
+  }
+  //初始化数据库
+  initTables  () {
+    this.database.transaction(function (tx) {
+      for (var i = 0; i < sqls.length; i++) {
+        var query = sqls[i].replace(/\\n/g, '\n');
+        tx.executeSql(query);
+      }
+    })
+    //   .then(data=>{
+    //   Promise.resolve("OK");
+    // },err=>{
+    //   Promise.reject(err);
+    // })
+  };
+  //执行sql
+  executeSql(query, parameters){
+    this.database.executeSql(query,parameters).then(
+      data=>{
+        var items = [];
+        for (var i = 0; i < data.rows.length; i++) {
+          items.push(data.rows.item(i));
+        }
+        return items;
+       // Promise.resolve(items);
+      },err=>{
+        return err;
+        // Promise.reject(err);
+      }
+    )
+    //this.database.executeSql(_db, query, parameters)
   }
 
   fillDatabase() {
+    console.log('执行fill');
     this.http.get('assets/dummyDump.sql')
       .map(res => res.text())
       .subscribe(sql => {
@@ -55,13 +98,13 @@ export class DatabaseProvider {
       return err;
     });
   }
-
   getAllDevelopers() {
     return this.database.executeSql("SELECT * FROM developer", []).then((data) => {
+      console.log('执行');
       let developers = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          developers.push({ name: data.rows.item(i).name, skill: data.rows.item(i).skill, yearsOfExperience: data.rows.item(i).yearsOfExperience });
+          developers.push(data.rows.item(i));
         }
       }
       return developers;
@@ -74,5 +117,6 @@ export class DatabaseProvider {
   getDatabaseState() {
     return this.databaseReady.asObservable();
   }
+
 
 }

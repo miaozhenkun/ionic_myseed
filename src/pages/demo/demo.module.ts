@@ -21,14 +21,15 @@ import {SelectPicturePageModule} from "../../common/select-picture/select-pictur
 import {TransitionDemoPageModule} from "./transition-demo/transition-demo.module";
 import {ModalFromRightPageModule} from "./transition-demo/modal-from-right/modal-from-right.module";
 import {ModalScalePageModule} from "./transition-demo/modal-scale/modal-scale.module";
+import {Chat} from "../../common/chat/Chat";
 
 
 @NgModule({
-  declarations: [DemoPage,ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,AreasSelect,PagingPage,Deblocking,RegisterPage,FindPasswordPage],
+  declarations: [DemoPage,ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,AreasSelect,PagingPage,Deblocking,Chat,RegisterPage,FindPasswordPage],
   imports: [IonicPageModule,MapLocationModule,PreviewPicturePageModule, SelectPicturePageModule,
     TransitionDemoPageModule,ModalScalePageModule, ModalFromRightPageModule ,  IonicPageModule.forChild(DemoPage)],
   providers: [ IonicPageModule,],
-  exports: [IonicPageModule,AreasSelect,PagingPage,Deblocking],
+  exports: [IonicPageModule,AreasSelect,PagingPage,Deblocking,Chat],
   entryComponents:[ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,RegisterPage,FindPasswordPage]
 })
 export class DemoModule {

@@ -53,7 +53,12 @@ import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLea
       modalEnter: 'modal-slide-in',
       modalLeave: 'modal-slide-out',
     }),
-    IonicStorageModule.forRoot(),//就这里
+    IonicStorageModule.forRoot(
+      {
+        name: '__mydb',
+        driverOrder: ['indexeddb', 'sqlite', 'websql']
+      }
+    ),//就这里
     DemoModule,
   ],
   bootstrap: [IonicApp],
