@@ -35,7 +35,8 @@ import {HttpMyNetService} from '../providers/HttpMyNetService';
 import { LookService } from "../providers/look-service";
 import { UserService } from "../providers/UserService";
 import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
-
+import { JPush } from 'ionic3-jpush';
+import {Device} from "@ionic-native/device";
 
 @NgModule({
   declarations: [
@@ -82,6 +83,8 @@ import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLea
     SQLite,
     SPEDATA,
     SQLitePorter,
+    JPush,
+    Device,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,
     NativeService,
