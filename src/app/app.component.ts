@@ -8,8 +8,6 @@ import {WelcomePage} from "../pages/welcome/welcome";
 import {GlobalData} from "../providers/GlobalData";
 import { JPush } from 'ionic3-jpush';
 import {Device} from "@ionic-native/device";
-
-declare var window;
 @Component({
    templateUrl: 'app.html'
   //template: `<ion-nav [root]="rootPage"></ion-nav>`,
@@ -37,33 +35,29 @@ export class MyApp {
       that.globalData.token=token;
     })
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      console.log(this.device);
       if(this.device.platform){
-
         this.jPush.getRegistrationID().then(regid => {
-          alert(regid);
+          // alert(regid);
         })
         document.addEventListener("jpush.receiveNotification", () => {
-
         }, false);
-        document.addEventListener("jpush.receiveNotification", function (event) {
-          var alertContent;
-          if(this.device.platform == "Android") {
-            alertContent = "Android"+event;
-          } else {
-            alertContent = event;
-          }
-          alert("open Notification:" + alertContent);
-        }, false)
+        statusBar.styleDefault();
+        splashScreen.hide();
+        // document.addEventListener("jpush.receiveNotification", function (event) {
+        //   var alertContent;
+        //   if(this.device.platform == "Android") {
+        //     alertContent = "Android"+event;
+        //   } else {
+        //     alertContent = event;
+        //   }
+        //   //alert("open Notification:" + alertContent);
+        // }, false)
       }
-      statusBar.styleDefault();
-      splashScreen.hide();
       this.initializeApp();
     });
   }
   initializeApp() {
+    let that=this;
     this.platform.ready().then(() => {
       //注册返回按键事件
       this.platform.registerBackButtonAction((): any => {
@@ -86,8 +80,6 @@ export class MyApp {
         //当前页面为tab栏的子页面，正常返回
         return activeNav.pop();
       }, 101);
-
-
     });
   }
 

@@ -1,43 +1,62 @@
-<!--<ion-header>-->
-  <!--<ion-navbar color="hcolor">-->
-    <!--<ion-title>聊天</ion-title>-->
-    <!--<ion-buttons end>-->
-      <!--<button ion-button (click)="sendPicMsg()">-->
-        <!--<ion-icon name="camera"></ion-icon>-->
-      <!--</button>-->
-    <!--</ion-buttons>-->
-  <!--</ion-navbar>-->
-<!--</ion-header>-->
 <ion-content #content>
   <div class = "chatwindow">
     <ion-list no-lines>
       <ion-item *ngFor = "let item of allmessages; let i = index" text-wrap>
-        <ion-avatar item-left *ngIf="item.issend">
+        <ion-avatar item-left *ngIf="!item.from">
           <img src="assets/img/avtor.jpg" />
         </ion-avatar>
-        <div class="bubble me" *ngIf="item.issend ">
-          <h3 *ngIf="!item.ispic">{{item.con}}</h3>
-          <img src="{{item.con}}" *ngIf="item.ispic">
+        <div class="bubble me" *ngIf="!item.from">
+          <h3 *ngIf="item.text">{{item.text}}</h3>
+          <img  *ngIf="item.thumbPath" src="{{item.thumbPath}}" >
         </div>
-        <ion-avatar item-right *ngIf="!item.issend">
+        <ion-avatar item-right *ngIf="item.from">
           <img src="assets/img/avtor.jpg" />
           <!--<img src="{{photoURL}}">-->
         </ion-avatar>
-        <div class="bubble you" *ngIf="!item.issend">
-          <h3 *ngIf="!item.ispic">{{item.con}}</h3>
-          <img src="{{item.con}}" *ngIf="item.ispic">
+        <div class="bubble you" *ngIf="item.from">
+          <h3 *ngIf="item.text">{{item.text}}</h3>
+          <img *ngIf="item.thumbPath" src="{{item.thumbPath}}" >
         </div>
       </ion-item>
     </ion-list>
   </div>
 </ion-content>
-<ion-footer ion-fixed>
-  <ion-toolbar class="no-border" color="white">
-    <ion-input [(ngModel)]="newmessage" placeholder="输入聊天内容..."></ion-input>
-    <ion-buttons end>
-      <button ion-button (click)="send()">
-        <ion-icon name="send" color="primary"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
+
+<ion-footer no-border [style.height]="showEmojiPicker ? '255px' : '55px'">
+  <ion-grid class="input-wrap">
+    <ion-row>
+      <ion-col col-2>
+        <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+          <ion-icon name="md-happy"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8>
+        <ion-textarea #chat_input
+                      placeholder="Text Input"
+                      [(ngModel)]="newmessage"
+                      (keyup.enter)="sendMsg()"
+                      (focus)="onFocus()">
+        </ion-textarea>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button clear icon-only item-right (click)="send()">
+          <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--<emoji-picker *ngIf="showEmojiPicker" [(ngModel)]="editorMsg"></emoji-picker>-->
 </ion-footer>
+
+
+
+<!--<ion-footer ion-fixed>-->
+  <!--<ion-toolbar class="no-border" color="white">-->
+    <!--<ion-input [(ngModel)]="newmessage" placeholder="输入聊天内容..."></ion-input>-->
+    <!--<ion-buttons end>-->
+      <!--<button ion-button (click)="send()">-->
+        <!--发送-->
+      <!--</button>-->
+    <!--</ion-buttons>-->
+  <!--</ion-toolbar>-->
+<!--</ion-footer>-->

@@ -38,11 +38,13 @@ import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLea
 import { JPush } from 'ionic3-jpush';
 import {Device} from "@ionic-native/device";
 
+
+
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
-    WelcomePage
+    WelcomePage,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,8 @@ import {Device} from "@ionic-native/device";
       mode: 'ios',
       modalEnter: 'modal-slide-in',
       modalLeave: 'modal-slide-out',
+      scrollAssist:false,
+      autoFocusAssit:false
     }),
     IonicStorageModule.forRoot(
       {

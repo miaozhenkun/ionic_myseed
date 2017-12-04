@@ -15,6 +15,7 @@ export const APP_VERSION_SERVE_URL = '';//app版本升级服务;测试环境,查
 /*----------------------------------------后台Api地址----------------------------------------*/
 export const APP_SERVE_URL = 'http://192.168.1.252:9201/boms-manager/api';
 export const PAGE_SIZE= 10;//默认分页大小
+export const appKey="7c86b7046b42aca4d1287247";  //极光推送  的 appKey
 //字典码表
 export  const  GLOBAL_DICSMAP={
   "STATECODE": {// 状态代码
