@@ -2,18 +2,18 @@
   <div class = "chatwindow">
     <ion-list no-lines>
       <ion-item *ngFor = "let item of allmessages; let i = index" text-wrap>
-        <ion-avatar item-left *ngIf="!item.from">
+        <ion-avatar item-left *ngIf="item.target.username!=myInfo.username">
           <img src="assets/img/avtor.jpg" />
         </ion-avatar>
-        <div class="bubble me" *ngIf="!item.from">
+        <div class="bubble me" *ngIf="item.target.username!=myInfo.username">
           <h3 *ngIf="item.text">{{item.text}}</h3>
           <img  *ngIf="item.thumbPath" src="{{item.thumbPath}}" >
         </div>
-        <ion-avatar item-right *ngIf="item.from">
+        <ion-avatar item-right *ngIf="item.target.username==myInfo.username">
           <img src="assets/img/avtor.jpg" />
           <!--<img src="{{photoURL}}">-->
         </ion-avatar>
-        <div class="bubble you" *ngIf="item.from">
+        <div class="bubble you" *ngIf="item.target.username==myInfo.username">
           <h3 *ngIf="item.text">{{item.text}}</h3>
           <img *ngIf="item.thumbPath" src="{{item.thumbPath}}" >
         </div>
@@ -45,7 +45,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <!--<emoji-picker *ngIf="showEmojiPicker" [(ngModel)]="editorMsg"></emoji-picker>-->
+  <emoji-picker *ngIf="showEmojiPicker" [(ngModel)]="newmessage"></emoji-picker>
 </ion-footer>
 
 

@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter, ElementRef, ViewChild,ChangeDete
 import {NativeService} from "../../providers/NativeService";
 import {Device} from "@ionic-native/device";
 import {appKey} from "../../providers/Constants";
-import {Content} from "ionic-angular";
+import {Content, TextInput} from "ionic-angular";
 
 declare var JMessage;
 /**
@@ -24,6 +24,7 @@ export class Chat{
   allmessages = [];
   myInfo ;
   showEmojiPicker = false;
+  @ViewChild('chat_input') messageInput: TextInput;
   constructor(private nativeService:NativeService,private device:Device,private cdRef: ChangeDetectorRef ) {
 
   }
@@ -48,7 +49,7 @@ export class Chat{
               }
               that.cdRef.detectChanges();
               this.scrollToBottom();
-                // alert(this.allmessages.length);
+              alert(this.allmessages[this.allmessages.length-1].target.username);
             }, (error) => {
               var code = error.code;
               var desc = error.description;
@@ -137,11 +138,13 @@ export class Chat{
     }
   }
  send(){
+    //username 为目标名字     发送时将username  存入target 对象
    let that=this;
    JMessage.sendTextMessage({ type: 'single', username: 'miaokun', appKey: appKey,
        text: this.newmessage, extras: {key1: 'value1'}, messageSendingOptions: JMessage.messageSendingOptions },
      (msg) => {
-       that.allmessages.push({ type: 'single',  text: this.newmessage,from:that.myInfo,thumbPath:null});
+
+       that.allmessages.push({ type: 'single',  text: this.newmessage,from:that.myInfo,thumbPath:null,target:{username:"miaokun"}});
        this.newmessage="";
       alert('发送成功');
      }, (error) => {
@@ -150,5 +153,15 @@ export class Chat{
        // var desc = error.description
      })
  }
+  switchEmojiPicker() {
+    this.showEmojiPicker = !this.showEmojiPicker;
+    if (!this.showEmojiPicker) {
+      this.messageInput.setFocus();
+    }
+    this.content.resize();
+    this.scrollToBottom();
+  }
+
+
 
 }

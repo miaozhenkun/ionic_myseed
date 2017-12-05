@@ -37,6 +37,7 @@ import { UserService } from "../providers/UserService";
 import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLeave} from "./modal-transitions";
 import { JPush } from 'ionic3-jpush';
 import {Device} from "@ionic-native/device";
+import {EmojiProvider} from "../providers/emoji";
 
 
 
@@ -97,7 +98,8 @@ import {Device} from "@ionic-native/device";
     GlobalData,
     HttpMyNetService,
     LookService,
-    UserService
+    UserService,
+    EmojiProvider
   ]
 })
 export class AppModule {
