@@ -75,10 +75,10 @@
       "uk.co.workingedge.cordova.plugin.sqliteporter": {},
       "cordova-plugin-x-toast": {},
       "jpush-phonegap-plugin": {
-        "APP_KEY": "7c86b7046b42aca4d1287247"
+        "APP_KEY": "d3aa2b564a90b1d6ca416b13"
       },
       "jmessage-phonegap-plugin": {
-        "APP_KEY": "7c86b7046b42aca4d1287247"
+        "APP_KEY": "d3aa2b564a90b1d6ca416b13"
       }
     },
     "platforms": [
