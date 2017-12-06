@@ -24,6 +24,7 @@ export class Chat{
   allmessages = [];
   myInfo ;
   showEmojiPicker = false;
+  isFirst=true;
   @ViewChild('chat_input') messageInput: TextInput;
   constructor(private nativeService:NativeService,private device:Device,private cdRef: ChangeDetectorRef ) {
 
@@ -36,24 +37,24 @@ export class Chat{
       JMessage.login({'username': 'miao', 'password': '123456'},
         () => {
           alert("login ok");
-          JMessage.getHistoryMessages({ type: 'single', username: 'miaokun',
-              appKey: appKey, from: 0, limit: 20 },
-            (msgArr) => { // 以参数形式返回消息对象数组
-              // alert(msgArr);
-              // do something.
-              if( this.allmessages.length>0){
-                this.allmessages.concat(msgArr);
-              }else {
-                this.allmessages=msgArr;
-                this.allmessages.reverse();
-              }
-              that.cdRef.detectChanges();
-              this.scrollToBottom();
-              alert(this.allmessages[this.allmessages.length-1].target.username);
-            }, (error) => {
-              var code = error.code;
-              var desc = error.description;
-            })
+          // JMessage.getHistoryMessages({ type: 'single', username: 'miaokun',
+          //     appKey: appKey, from: 0, limit: 20 },
+          //   (msgArr) => { // 以参数形式返回消息对象数组
+          //     // alert(msgArr);
+          //     // do something.
+          //     if( this.allmessages.length>0){
+          //       this.allmessages.concat(msgArr);
+          //     }else {
+          //       this.allmessages=msgArr;
+          //       this.allmessages.reverse();
+          //     }
+          //     that.cdRef.detectChanges();
+          //     this.scrollToBottom();
+          //     alert(this.allmessages[this.allmessages.length-1].target.username);
+          //   }, (error) => {
+          //     var code = error.code;
+          //     var desc = error.description;
+          //   })
         }, (error) => {
           alert("Login failed: " + error.description);
         });
@@ -107,51 +108,46 @@ export class Chat{
 
   }
   ionViewLoaded(){
-    let that=this;
-    if(this.device.platform) {
-      JMessage.init({isOpenMessageRoaming: true});
-      JMessage.setDebugMode({enable: true});//发布时设为false
-      JMessage.login({'username': 'miao', 'password': '123456'},
-        () => {
-          alert("login ok");
-          JMessage.getHistoryMessages({
-              type: 'single', username: 'miaokun',
-              appKey: appKey, from: 0, limit: 20
-            },
-            (msgArr) => { // 以参数形式返回消息对象数组
-              // alert(msgArr);
-              // do something.
-              if (this.allmessages.length > 0) {
-                this.allmessages.concat(msgArr);
-              } else {
-                this.allmessages = msgArr;
-              }
-              that.cdRef.detectChanges();
-              // alert(this.allmessages.length);
-            }, (error) => {
-              var code = error.code;
-              var desc = error.description;
-            })
-        }, (error) => {
-          alert("Login failed: " + error.description);
-        });
-    }
+
   }
  send(){
     //username 为目标名字     发送时将username  存入target 对象
    let that=this;
-   JMessage.sendTextMessage({ type: 'single', username: 'miaokun', appKey: appKey,
-       text: this.newmessage, extras: {key1: 'value1'}, messageSendingOptions: JMessage.messageSendingOptions },
-     (msg) => {
+   if(this.isFirst){
+     JMessage.createConversation({ type: 'single', username: 'miao', appKey: appKey },
+       (conversation) => {
+          this.isFirst=false;
+         // do something.
+         JMessage.sendTextMessage({ type: 'single', username: 'miao', appKey: appKey,
+             text: this.newmessage, extras: {key1: 'value1'}, messageSendingOptions: JMessage.messageSendingOptions },
+           (msg) => {
+             that.allmessages.push({ type: 'single',  text: this.newmessage,from:that.myInfo,thumbPath:null,target:{username:"miao"}});
+             this.newmessage="";
+             alert('发送成功');
+           }, (error) => {
+             alert(error.description);
+             // var code = error.code
+             // var desc = error.description
+           })
+       }, (error) => {
+         var code = error.code
+         var desc = error.description
+       })
+   }else {
+     JMessage.sendTextMessage({ type: 'single', username: 'miao', appKey: appKey,
+         text: this.newmessage, extras: {key1: 'value1'}, messageSendingOptions: JMessage.messageSendingOptions },
+       (msg) => {
+         that.allmessages.push({ type: 'single',  text: this.newmessage,from:that.myInfo,thumbPath:null,target:{username:"miao"}});
+         this.newmessage="";
+         alert('发送成功');
+       }, (error) => {
+         alert(error.description);
+         // var code = error.code
+         // var desc = error.description
+       })
+   }
 
-       that.allmessages.push({ type: 'single',  text: this.newmessage,from:that.myInfo,thumbPath:null,target:{username:"miaokun"}});
-       this.newmessage="";
-      alert('发送成功');
-     }, (error) => {
-       alert(error.description);
-       // var code = error.code
-       // var desc = error.description
-     })
+
  }
   switchEmojiPicker() {
     this.showEmojiPicker = !this.showEmojiPicker;

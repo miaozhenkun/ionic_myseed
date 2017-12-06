@@ -1,20 +1,48 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+<!--<ion-header>-->
+<!--<ion-navbar>-->
+<!--<ion-title>Home</ion-title>-->
+<!--</ion-navbar>-->
+<!--</ion-header>-->
+<ion-content >
+  <ion-slides [autoplay]="2000" [loop]="true" [pager]="true" [speed]="1500" (ionSlideTap)="slideTap()">
+    <ion-slide>
+      <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M000001YCZlY3aBifi.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M000001s0BXx3Zxcwb.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M000002cwng4353HKz.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M00000236sfA406cmk.jpg">
+    </ion-slide>
+    <ion-slide>
+      <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M000004ckGfg3zaho0.jpg">
+    </ion-slide>
+  </ion-slides>
+  <ion-searchbar type="text" [(ngModel)]="searchText" [animated]="animated" [debounce]="debounce" (ionInput)="onInput($event)"
+                 (ionCancel)="onCancel($event)" (ionFocus)="onFocus()" (ionBlur)="onBlur()" placeholder="输入患者信息/知识信息">
+  </ion-searchbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 class="center">
+        <button ion-button class=" circlediv center " color="secondary">患者管理</button>
+      </ion-col>
+      <ion-col col-4 class="center">
+        <button ion-button class=" circlediv center " color="secondary">在线咨询</button>
+      </ion-col>
+      <ion-col col-4 class="center">
+        <button ion-button class="circlediv center " color="secondary">消息管理</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="w100 border-bottom"></div>
+  <b color="secondary" class="f16 margin-left  color-main ">随访提醒</b>
+  <p class="f14 margin">XXX医生您好，您的患者XXX2017年12月5日要进
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>过滤器，自定义 pipe用法|dicTrans:'GENDER'    {{gener|dicTrans:'GENDER'}}</p>
-  <p>过滤器，自定义 pipe用法|defaultValue   {{purName|defaultValue}}</p>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
-  <!--<div #cerchart class="my-charts"></div>-->
+    行随访，请您准备好资料，准时参加随访。</p>
+  <!--<h2>Welcome to Ionic!</h2>-->
+  <!--<p>过滤器，自定义 pipe用法|dicTrans:'GENDER'    {{gener|dicTrans:'GENDER'}}</p>-->
+  <!--<p>过滤器，自定义 pipe用法|defaultValue   {{purName|defaultValue}}</p>-->
 </ion-content>

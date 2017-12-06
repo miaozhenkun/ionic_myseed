@@ -4,5 +4,26 @@ page-home {
   height: 260px;
   margin-right: 5px;
 }
-
+  /*******************
+  slides
+  *******************/
+  ion-slides {
+    height: auto;
+  }
+  .swiper-pagination-bullet-active {
+    width: 20px !important;
+    background: color($colors, secondary) !important;
+  }
+  .swiper-pagination-bullet {
+    width: 3px;
+    height: 3px;
+    background: #ffffff;
+    opacity: .8;
+    border-radius: 0;
+  }
+  .circlediv{
+    width: 100px;
+    height:100px;
+    border-radius: 100%;
+  }
 }
