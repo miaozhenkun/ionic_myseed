@@ -41,11 +41,12 @@ export class MyPage {
   }
 
   ionViewDidLoad() {
-    this.LookService.getData().subscribe(
-      data=>{
-          this.obj_CategorysListData=data.data.message;
-      }
-    );
+    this.IMG_PATH="http://img.dongqiudi.com/uploads/avatar/2015/07/25/QM387nh7As_thumb_1437790672318.jpg";
+    // this.LookService.getData().subscribe(
+    //   data=>{
+    //       this.obj_CategorysListData=data.data.message;
+    //   }
+    // );
   }
   ngOnInit(){
     // this.UserService.getAvatar().subscribe(

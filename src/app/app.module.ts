@@ -30,7 +30,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { IonicStorageModule } from '@ionic/storage';
 import {MyModule} from "../pages/demo/my.module";
 
-
 import {NativeService} from "../providers/NativeService";
 import {HttpMyNetService} from '../providers/HttpMyNetService';
 import { LookService } from "../providers/look-service";
@@ -40,9 +39,8 @@ import { JPush } from 'ionic3-jpush';
 import {Device} from "@ionic-native/device";
 import {EmojiProvider} from "../providers/emoji";
 import {MainMyService} from "../providers/mainMyservice";
-
-
-
+import {AlphaScrollModule} from "ionic-alpha-scroll";
+import {Contacts} from "../providers/contacts";
 
 @NgModule({
   declarations: [
@@ -53,6 +51,7 @@ import {MainMyService} from "../providers/mainMyservice";
   imports: [
     BrowserModule,
     HttpModule,
+    AlphaScrollModule.forRoot(),
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages: 'true',       //隐藏全部子页面tabs
       iconMode: 'ios',
@@ -103,7 +102,8 @@ import {MainMyService} from "../providers/mainMyservice";
     LookService,
     UserService,
     MainMyService,
-    EmojiProvider
+    EmojiProvider,
+    Contacts
   ]
 })
 export class AppModule {
