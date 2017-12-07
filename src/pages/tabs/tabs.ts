@@ -10,10 +10,11 @@ import {IonicPage,Tabs } from 'ionic-angular';
 export class TabsPage {
   @ViewChild('mainTabs') tabs: Tabs;
   tab1Root = 'HomePage';
-  tab2Root = 'AboutPage';
-  tab3Root = 'ContactPage';
-  tab4Root = 'option';
-  tab5Root = 'DemoPage';
+  tab2Root = 'patientPage';
+  tab3Root = 'knowledgePage';
+  tab4Root = 'ContactPage';
+  tab5Root = 'MyPage';
+  // knowledgePage
   constructor() {
 
   }

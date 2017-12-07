@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {UserService } from '../../../providers/UserService';
 import {PAGE_SIZE } from '../../../providers/Constants';
+import {MainMyService} from "../../../providers/mainMyservice";
 
 @Component({
   selector: 'page-employeeList',
@@ -14,7 +14,7 @@ export class employeeListPage {
   itemsTotal = null; // 列表数据总条数
   page = 1; //分页起始条数
   searchParams={page: null, total: null};
-  constructor(public navCtrl: NavController,private userService:UserService) {
+  constructor(public navCtrl: NavController,private userService:MainMyService) {
 
   }
 

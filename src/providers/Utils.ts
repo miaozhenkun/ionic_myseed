@@ -121,7 +121,7 @@ export class Utils {
 
   /**
    * 把url中的双斜杠替换为单斜杠
-   * 如:http://localhost:8080//api//demo.替换后http://localhost:8080/api/demo
+   *
    * @param url
    * @returns {string}
    */

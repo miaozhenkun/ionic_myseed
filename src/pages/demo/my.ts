@@ -14,10 +14,10 @@ import {TransitionDemoPage} from "./transition-demo/transition-demo";
 
 @IonicPage()
 @Component({
-  selector: 'page-demo',
-  templateUrl: 'demo.html',
+  selector: 'page-my',
+  templateUrl: 'my.html',
 })
-export class DemoPage {
+export class MyPage {
   obj_CategorysListData;
   errorMessage: string;
   IMG_PATH;

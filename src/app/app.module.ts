@@ -28,7 +28,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { IonicStorageModule } from '@ionic/storage';
-import {DemoModule} from "../pages/demo/demo.module";
+import {MyModule} from "../pages/demo/my.module";
+
 
 import {NativeService} from "../providers/NativeService";
 import {HttpMyNetService} from '../providers/HttpMyNetService';
@@ -38,6 +39,8 @@ import {ModalFromRightEnter, ModalFromRightLeave, ModalScaleEnter, ModalScaleLea
 import { JPush } from 'ionic3-jpush';
 import {Device} from "@ionic-native/device";
 import {EmojiProvider} from "../providers/emoji";
+import {MainMyService} from "../providers/mainMyservice";
+
 
 
 
@@ -65,7 +68,7 @@ import {EmojiProvider} from "../providers/emoji";
         driverOrder: ['indexeddb', 'sqlite', 'websql']
       }
     ),//就这里
-    DemoModule,
+    MyModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -99,6 +102,7 @@ import {EmojiProvider} from "../providers/emoji";
     HttpMyNetService,
     LookService,
     UserService,
+    MainMyService,
     EmojiProvider
   ]
 })
