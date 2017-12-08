@@ -60,7 +60,9 @@ import {ChineseCharHandleService} from "../providers/ChineseCharHandleService";
       modalEnter: 'modal-slide-in',
       modalLeave: 'modal-slide-out',
       scrollAssist:false,
-      autoFocusAssit:false
+      autoFocusAssit:false,
+      backButtonText: '',
+      preloadModules: true // 启用预加载
     }),
     IonicStorageModule.forRoot(
       {

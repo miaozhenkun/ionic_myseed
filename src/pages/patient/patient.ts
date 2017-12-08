@@ -1,6 +1,7 @@
 import { Component ,ViewChildren, ViewChild,ChangeDetectorRef} from '@angular/core';
 import {NavController, IonicPage, Content} from 'ionic-angular';
-import {Contacts} from '../../providers/contacts'
+import {Contacts} from '../../providers/contacts';
+import {ChineseCharHandleService} from "../../providers/ChineseCharHandleService";
 @IonicPage()
 @Component({
   selector: 'page-patient',
@@ -19,29 +20,35 @@ export class patientPage {
 
   constructor(public navCtrl: NavController,
               public contactsSev: Contacts,
-              public ref: ChangeDetectorRef) {
+              public ref: ChangeDetectorRef,public ChineseCharHandleService :ChineseCharHandleService) {
 
     this.contactsSev.getContacts()
       .then(res => {
         this.contacts = this.contactsSev.grouping(res);
         this.items = this.contacts;
-        console.log(this.contacts)
       })
   }
-
-  ionViewDidEnter() {
-    this.getOffsetTops();
+  ionViewLoaded(){
+    //this.getOffsetTops();
   }
+  ionViewDidEnter() {
+  //  this.getOffsetTops();
+  }
+
 
   getOffsetTops() {
     this.offsetTops = this.ionItemGroup._results.map(ele => {
       return ele.nativeElement.offsetTop
     })
   }
+  onFocus() {
+    this.content.resize();
+  }
 
   selectIndex(index: number) {
     this.index = this.indexes[index];
-    const offsetTop = this.offsetTops[index];
+    const offsetTop = this.ionItemGroup._results[index].nativeElement.offsetTop;
+    console.log(offsetTop);
     this.content.scrollTo(0, offsetTop, 300);
     this.createModal();
   }
@@ -76,13 +83,14 @@ export class patientPage {
 
   //过滤
   filterItems(ev: any) {
+    let that=this;
     this.contacts=  this.items;
     let val = ev.target.value;
-    console.log(this.contacts);
+    console.log(val);
     if (val && val.trim() !== '') {
+     val= that.ChineseCharHandleService.query(ev.target.value)[0];
       this.contacts = this.contacts.filter(function(item) {
-
-        return item.groupName.toLowerCase().includes(val.toLowerCase());
+        return   that.ChineseCharHandleService.query(item.groupName)[0].toLowerCase().includes(val.toLowerCase());
       });
     }
   }

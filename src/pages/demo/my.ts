@@ -89,7 +89,12 @@ export class MyPage {
   pageTransition() {
     this.navCtrl.push(TransitionDemoPage);
   }
-
+  goSetting(){
+    this.navCtrl.push('SettingPage');
+  }
+  goFeedBack(){
+    this.navCtrl.push('FeedBackPage');
+  }
 
 
 }
