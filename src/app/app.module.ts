@@ -41,6 +41,7 @@ import {EmojiProvider} from "../providers/emoji";
 import {MainMyService} from "../providers/mainMyservice";
 import {AlphaScrollModule} from "ionic-alpha-scroll";
 import {Contacts} from "../providers/contacts";
+import {ChineseCharHandleService} from "../providers/ChineseCharHandleService";
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import {Contacts} from "../providers/contacts";
     UserService,
     MainMyService,
     EmojiProvider,
+    ChineseCharHandleService,
     Contacts
   ]
 })

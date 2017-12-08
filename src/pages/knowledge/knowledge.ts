@@ -1,61 +1,78 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {DatabaseProvider} from "../../providers/DatabaseProvider";
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {NativeService} from "../../providers/NativeService";
-
+declare let $: any;
+import _ from 'lodash';
 @IonicPage({name:'knowledgePage'})
 @Component({
   selector: 'page-knowledgePage',
   templateUrl: 'knowledge.html',
 })
 export class knowledgePage {
-  instance;
-  developer = {};
-  developers = [];
-  promiseData: string;
-  meassage;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private  nativeService :NativeService,
-              private databaseprovider:DatabaseProvider
-  ) {
+  count = 0;
+  pageNumber = 1;
+  articles: any[] = [];
+  loading = false;
 
-    this.databaseprovider.getDatabaseState().subscribe(rdy => {
-      console.log(rdy);
-      if (rdy) {
-        this.loadDeveloperData();
-      }
-    })
-    // this.loadDeveloperData();
+  constructor(
+    private appCtrl: App,
+    private nativeService: NativeService,
+    private navCtrl: NavController,
+  ) {
   }
 
   ionViewDidEnter() {
-    let that=this;
-    this.getPromise().then(
-      v =>{
-        this.promiseData = v;
-        console.log(v);
-      },err=>{
-        this.meassage=err;
-        console.log(err);
-      } );
+    this.appCtrl.setTitle('阅读');
   }
 
-  loadDeveloperData() {
-    this.databaseprovider.getAllDevelopers().then(data => {
-      console.log(data);
-      this.developers = data;
-    })
-
+  ionViewDidLoad() {
+    this.findPage(null);
   }
-  addDeveloper() {
 
-    this.developer = {};
+  doInfinite(infiniteScroll) {
+    this.findPage(infiniteScroll);
   }
-  getPromise(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // resolve('Promise complete!');
-        reject('失败了');
-      }, 2000);
+
+  findPage(infiniteScroll) {
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
+    $.ajax({
+      type: 'get', // jquey是不支持post方式跨域的
+      async: false,
+      url: `https://author.baidu.com/list?type=article&context={"offset":"-1_${(this.pageNumber - 1) * 20}","app_id":"1552500388453128","last_time":"1510714844"}&_=1510714916623`, // 跨域请求的URL
+      dataType: 'jsonp',
+      // 传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)
+      jsonp: 'callback',
+      // 自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名
+      jsonpCallback: 'responseHandler',
+      // 成功获取跨域服务器上的json数据后,会动态执行这个callback函数
+      success: (json) => {
+        this.count = json.data.count;
+        let items = json.data.items;
+        items.forEach(item => {
+          item.content = JSON.parse(item.content);
+        });
+        this.articles = this.articles.concat(items);
+        if (json.data.has_more) {
+          this.pageNumber++;
+        } else {
+          if (infiniteScroll) {
+            infiniteScroll.enable(false);
+          }
+        }
+        this.loading = false;
+        if (infiniteScroll) {
+          infiniteScroll.complete();
+        }
+      }
+    });
+  }
+
+  toArticle(id) {
+    this.navCtrl.push('ArticlePage', {
+      article: _.find(this.articles, {id: id})
     });
   }
 

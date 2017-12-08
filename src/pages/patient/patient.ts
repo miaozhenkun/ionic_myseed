@@ -13,17 +13,18 @@ export class patientPage {
   indexes: Array<string> = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#".split('');
   offsetTops: Array<number> = [];
   contacts: Array<any> = [];
-
+  items: Array<any> = [];
   @ViewChildren('IonItemGroup') ionItemGroup;
   @ViewChild(Content) content: Content;
 
   constructor(public navCtrl: NavController,
               public contactsSev: Contacts,
-              public ref: ChangeDetectorRef,) {
+              public ref: ChangeDetectorRef) {
 
     this.contactsSev.getContacts()
       .then(res => {
         this.contacts = this.contactsSev.grouping(res);
+        this.items = this.contacts;
         console.log(this.contacts)
       })
   }
@@ -72,4 +73,21 @@ export class patientPage {
       this.ref.detectChanges();
     }, 800)
   }
+
+  //过滤
+  filterItems(ev: any) {
+    this.contacts=  this.items;
+    let val = ev.target.value;
+    console.log(this.contacts);
+    if (val && val.trim() !== '') {
+      this.contacts = this.contacts.filter(function(item) {
+
+        return item.groupName.toLowerCase().includes(val.toLowerCase());
+      });
+    }
+  }
+
+
+
+
 }

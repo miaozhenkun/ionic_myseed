@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content (ionScroll)="onScroll()">
-  <ion-searchbar type="text" [(ngModel)]="searchText" [animated]="animated"
+  <ion-searchbar type="text" [(ngModel)]="searchText" [animated]="true"   (ionInput)="filterItems($event)"
                   placeholder="输入患者姓名/身份证号">
   </ion-searchbar>
   <div #IndexedMenu class="indexed-menu">
@@ -29,7 +29,7 @@
 
       <ion-item-sliding *ngFor="let i of item.contacts" #slidingItem>
         <ion-item>
-          {{ i.displayName + ' ' + i.name }}
+          {{ i.displayName}}
         </ion-item>
       </ion-item-sliding>
 

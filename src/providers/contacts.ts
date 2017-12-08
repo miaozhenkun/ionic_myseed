@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {Contact} from "../model/contact.model";
 import {Group} from "../model/group.model";
+import {ChineseCharHandleService} from "./ChineseCharHandleService";
 
 /*
  Generated class for the Contacts provider.
@@ -13,8 +14,10 @@ import {Group} from "../model/group.model";
 @Injectable()
 export class Contacts {
 
-  constructor(public http: Http) {
-    console.log('Hello Contacts Provider');
+  constructor(public http: Http,public ChineseCharHandleService :ChineseCharHandleService) {
+     console.log('Hello Contacts Provider');
+    // console.log(this.ChineseCharHandleService.query("刘"));
+    // console.log(this.ChineseCharHandleService.query("M"));
   }
 
   /**
@@ -50,14 +53,21 @@ export class Contacts {
           contacts: []
         }
       });
-
     // Push into the correct group
+    var reg= /^[A-Za-z]+$/;
     groupContacts.forEach((item) => {
 
       for (let i of array) {
-        if (i.displayName[0].toUpperCase() === item.groupName) {
+
+        if (i.displayName[0].toUpperCase() === item.groupName ) {
           item.contacts.push(i);
-        } else if (letterStr.indexOf(i.displayName[0].toUpperCase()) === -1) {
+          continue;
+        }else if(this.ChineseCharHandleService.query(i.displayName[0])[0].toUpperCase()=== item.groupName){
+          item.contacts.push(i);
+          continue;
+        }
+        // else if (letterStr.indexOf(i.displayName[0].toUpperCase()) === -1) {
+        else if (!reg.test(this.ChineseCharHandleService.query(i.displayName[0])[0].toUpperCase())) {
           groupContacts[groupContacts.length - 1].contacts.push(i)
         }
       }
