@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      手势登录
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content >
+  <div class="w100 align-center"><img  class=" headimg" src="{{IMG_PATH}}" /></div>
+  <deb-locking id="deblocking" [currheight]="164" (pwdResult)="getPwdResult($event)"></deb-locking>
+</ion-content>

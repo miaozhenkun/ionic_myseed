@@ -457,6 +457,10 @@ p.text2 {
 /*修改默认button样式*/
 .button.button-balanced{
   background-color: #15a9d0;
+  display: block;
+  width: auto;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 /*修改默认button-balanced样式*/
 .button.button-block{

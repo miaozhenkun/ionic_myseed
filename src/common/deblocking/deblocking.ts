@@ -12,7 +12,7 @@ import { IonicPage} from 'ionic-angular';
   templateUrl: 'deblocking.html',
 })
 export class Deblocking {
-  R = 26;canvasWidth = 400;canvasHeight = 320;OffsetX = 25; OffsetY = 25;
+  R = 26;canvasWidth = 400;canvasHeight = 320;OffsetX = 22; OffsetY = 22;
   canvas:any;
   context:any;
   circleArr = [];

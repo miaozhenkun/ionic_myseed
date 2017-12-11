@@ -1,15 +1,13 @@
 import {NgModule} from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+
 import {ChartjsDemoPage} from "../demo/chartjs-demo/chartjs-demo";
 import {PaginationDemoPage} from  "../demo/pagination-demo/pagination-demo";
 import {WorkMapPage} from  "../demo/work-map/work-map";
 import {WorkPage} from  "../demo/work/work-map";
 import {LoginPage} from  "../user/login/login";
-
-
 import {AreasSelect} from '../../common/area-select/AreasSelect';
 import {PagingPage} from '../../common/paging/paging';
-import {Deblocking} from '../../common/deblocking/deblocking';
 
 import {MapLocationModule} from "../../common/map-component/map-location/map-location.module";
 import {PreviewPicturePageModule} from '../../common/preview-picture/preview-picture.module';
@@ -22,15 +20,13 @@ import {ModalFromRightPageModule} from "./transition-demo/modal-from-right/modal
 import {ModalScalePageModule} from "./transition-demo/modal-scale/modal-scale.module";
 import {ChatModule} from "../../common/chat/chat.module";
 import {employeeListPage} from "../patient/base/employeeList";
-// import {EmojiPickerComponentModule} from "../../common/emoji-picker/emoji-picker.module";
-
 
 @NgModule({
-  declarations: [MyPage,ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,AreasSelect,PagingPage,Deblocking,RegisterPage,FindPasswordPage],
+  declarations: [MyPage,ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,AreasSelect,PagingPage,RegisterPage,FindPasswordPage],
   imports: [IonicPageModule,MapLocationModule,PreviewPicturePageModule, SelectPicturePageModule,
     TransitionDemoPageModule,ModalScalePageModule, ModalFromRightPageModule , ChatModule,IonicPageModule.forChild(MyPage)],
   providers: [ IonicPageModule,],
-  exports: [IonicPageModule,AreasSelect,PagingPage,Deblocking],
+  exports: [IonicPageModule,AreasSelect,PagingPage],
   entryComponents:[ChartjsDemoPage,PaginationDemoPage,WorkMapPage,WorkPage,LoginPage,employeeListPage,RegisterPage,FindPasswordPage]
 })
 export class MyModule {

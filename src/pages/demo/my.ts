@@ -39,6 +39,10 @@ export class MyPage {
   goLogin(){
     this.navCtrl.push(LoginPage);
   }
+  goUserInfo(){
+    console.log('用户信息');
+    this.navCtrl.push('UserInfoPage');
+  }
 
   ionViewDidLoad() {
     this.IMG_PATH="http://img.dongqiudi.com/uploads/avatar/2015/07/25/QM387nh7As_thumb_1437790672318.jpg";

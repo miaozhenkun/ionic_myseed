@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      个人资料
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>用户名</ion-label>
+      <ion-input type="text" [(ngModel)]="params.username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>性别</ion-label>
+      <ion-input type="text" [(ngModel)]="params.sex"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>学历</ion-label>
+      <ion-input type="text" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>所属机构</ion-label>
+      <ion-input type="text" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>职称</ion-label>
+      <ion-input type="text" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>机构职称</ion-label>
+      <ion-input type="text" ></ion-input>
+    </ion-item>
+  </ion-list>
+  <div  ion-button  class="button button-balanced"  color="secondary" tappable (click)="save()">
+    保存
+  </div>
+</ion-content>

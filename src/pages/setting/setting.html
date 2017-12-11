@@ -6,16 +6,15 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
-    <button tappable ion-item >
+    <button tappable ion-item (click)="goGenLogin()" >
       手势登录
     </button>
-    <button tappable ion-item >
+    <button tappable ion-item (click)="goSerPassword()">
       修改登录密码
     </button>
-    <button tappable ion-item >
+    <button tappable ion-item (click)="goAboutUs()">
       关于我们
     </button>
   </ion-list>

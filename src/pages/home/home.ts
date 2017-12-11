@@ -8,6 +8,7 @@ import { NavController,IonicPage } from 'ionic-angular';
 
 export class HomePage  {
   searchText: string;
+  @ViewChild('ionSlides') slides;
   // @ViewChild('cerchart') container: ElementRef;
   constructor(public navCtrl: NavController) {
 
@@ -16,7 +17,14 @@ export class HomePage  {
 
   }
   ionViewDidEnter() {
-
+    this.slides.startAutoplay();
+    this.slides.autoplayDisableOnInteraction = false;
+    console.log('start');
+  }
+  //页面离开时停止自动播放
+  ionViewDidLeave(){
+    this.slides.stopAutoplay();
+    console.log('stop');
   }
 
   onInput(event) {
